@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crud de carros</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="shortcut" href="favicon.ico">
+    <link rel="stylesheet" href="{{ url_for('static' , path='css/app.css') }}">
+</head>
+<style>
+    .rodape {
+        bottom: 0;
+        margin-left: 150px;
+        position: fixed;
+        width: 100%;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1 class="page-header text-center">API RestFul utilizando o framework FastAPI <br> CRUD (Create, Read, Update, Delete)</h1>
+        <h2 class="page-title text-center">Biblioteca de carros</h2>
+        {% block content %}
+        
+        {% endblock content %}
+    </div>
+    <footer class="rodape">
+        <h3 class="footer">Para maiores informacoes visite: /docs</h3>
+        </footer>
+</body>
+</html>
