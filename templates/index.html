@@ -4,7 +4,31 @@
  <div class="row">
     <div class="col-12">
         <a href="addnew" class="btn btn-primary">Adicionar</a>
-        <a href="lista.html" class="btn btn-primary">Veículos</a>
+        <br><br>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Cor</th>
+                    <th width="200">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rs in veiculos %}
+                    <tr>
+                        <td>{{ rs.id }}</td>
+                        <td>{{ rs.marca }}</td>
+                        <td>{{ rs.modelo }}</td>
+                        <td>{{ rs.cor }}</td>
+                        <td>
+                            <a href="edit/{{ rs.id }}" class="btn btn-success">Edit</a> | <a href="delete/{{ rs.id }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
  </div>
 
