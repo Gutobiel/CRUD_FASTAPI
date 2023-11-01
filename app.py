@@ -28,7 +28,7 @@ def get_db():
 @app.get("/")
 async def home(request: Request, db: Session = Depends(get_db)):
     veiculos = db.query(models.models.Veiculo).order_by(models.models.Veiculo.id.desc())
-    return templates.TemplateResponse("C:\Users\augusto.santos\OneDrive/-/Dataeasy\Área/de/Trabalho\fastapi_crud\templates", {"request": request, "veiculos": veiculos})
+    return templates.TemplateResponse("index.html", {"request": request, "veiculos": veiculos})
 
 @app.post("/add")
 async def add(request: Request, marca: str = Form(...), modelo: str = Form(...), cor: str = Form(...), db: Session = Depends(get_db)):
