@@ -1,11 +1,10 @@
 from fastapi import FastAPI, Request, Depends, Form, status
 from fastapi.templating import Jinja2Templates
-import models
+import models.models
 from database.database import engine, sessionlocal
 from sqlalchemy.orm import Session
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
-import models.models
 
 
 
@@ -13,7 +12,7 @@ models.models.Base.metadata.create_all(bind=engine)
  
 templates = Jinja2Templates(directory="templates")
  
-app = FastAPI()
+app = FastAPI(debug=True)
  
 app.mount("/static", StaticFiles(directory="static"), name="static")
  
