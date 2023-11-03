@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Placa</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Cor</th>
@@ -19,11 +20,12 @@
                 {% for rs in veiculos %}
                     <tr>
                         <td>{{ rs.id }}</td>
+                        <td>{{ rs.placa }}</td>
                         <td>{{ rs.marca }}</td>
                         <td>{{ rs.modelo }}</td>
                         <td>{{ rs.cor }}</td>
                         <td>
-                            <a href="edit/{{ rs.id }}" class="btn btn-success">Edit</a> | <a href="delete/{{ rs.id }}" class="btn btn-danger">Delete</a>
+                            <a href="edit/{{ rs.id }}" class="btn btn-success">Edit</a>   |   <a href="delete/{{ rs.id }}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

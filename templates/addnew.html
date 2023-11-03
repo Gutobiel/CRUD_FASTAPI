@@ -2,11 +2,16 @@
 
 {% block content %}
 
-<form action="add" method="post">
+<form action="add" method="post" tags="Avioes">
 
     <div class="mb-3">
         <label>Marca</label>
         <input type="text" name="marca" placeholder="" class="form-control"/>
+    </div>
+
+    <div class="mb-3" hidden>
+        <label>Placa</label>
+        <input type="text" name="placa" placeholder="" class="form-control"/>
     </div>
 
     <div class="mb-3">
@@ -19,7 +24,7 @@
         <input type="text" name="cor" placeholder="" class="form-control"/>
     </div>
 
-    <input type="submit" value="submit" class="btn btn-primary mb-3"/>
+    <input type="submit" value="Salvar" class="btn btn-primary mb-3"/>
 </form>
 
 {% endblock content %}
