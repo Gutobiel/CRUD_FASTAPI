@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request, Depends, Form, status
 from fastapi.templating import Jinja2Templates
+import uvicorn
 import models.models
 from database.database import engine, sessionlocal
 from sqlalchemy.orm import Session
@@ -84,7 +85,7 @@ async def update(request: Request, veiculo_id: int, marca: str = Form(...), mode
     
     return RedirectResponse(url=app.url_path_for("home"), status_code=status.HTTP_303_SEE_OTHER)
 
-
+#Deletar carro da tabela
 @app.get("/delete/{veiculo_id}", tags=["Deletar"])
 async def delete(request: Request, veiculo_id: int, db: Session = Depends(get_db)):
     veiculos = db.query(models.models.Veiculo).filter(models.models.Veiculo.id == veiculo_id).first()
@@ -92,3 +93,9 @@ async def delete(request: Request, veiculo_id: int, db: Session = Depends(get_db
     db.commit()
     return RedirectResponse(url=app.url_path_for("home"), status_code=status.HTTP_303_SEE_OTHER)
 
+@app.get("/ver", tags=["Tela informações do carro"])
+async def ver(request: Request):
+    return templates.TemplateResponse("ver.html", {"request": request, "veiculos": veiculos})
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='localhost', port=7777)

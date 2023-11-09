@@ -8,24 +8,28 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th width="50">Visualizar</th>
                     <th>Id</th>
                     <th>Placa</th>
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Cor</th>
-                    <th width="200">Action</th>
+                    <th width="200">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% for rs in veiculos %}
                     <tr>
+                        <td>
+                            <a href="ver" class="btn btn-primary ">Abrir</a>
+                        </td>
                         <td>{{ rs.id }}</td>
                         <td>{{ rs.placa }}</td>
                         <td>{{ rs.marca }}</td>
                         <td>{{ rs.modelo }}</td>
                         <td>{{ rs.cor }}</td>
                         <td>
-                            <a href="edit/{{ rs.id }}" class="btn btn-success">Edit</a>   |   <a href="delete/{{ rs.id }}" class="btn btn-danger">Delete</a>
+                            <a href="edit/{{ rs.id }}" class="btn btn-success">Editar</a>   |   <a href="delete/{{ rs.id }}" class="btn btn-danger">Deletar</a>
                         </td>
                     </tr>
                 {% endfor %}
