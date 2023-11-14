@@ -3,8 +3,20 @@
 {% block content %}
  <div class="row">
     <div class="col-12">
-        <a href="addnew" class="btn btn-primary">Adicionar</a>
-        <br><br>
+        <a href="addnew" class="btn btn-primary">Adicionar</a> <br><br>
+        
+        <div class="search-bar">
+            <input type="search" id="form1" placeholder="Pesquisar" >
+            <select class="custom-select">
+                <option selected>Filtrar</option>
+                <option value="1">Teste2</option>
+                <option value="2">Teste3</option>
+                <option value="3">Teste4</option>
+              </select>
+        <div>
+            <br>
+       </div>
+        </div>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -14,7 +26,7 @@
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Cor</th>
-                    <th width="200">Ações</th>
+                    <th width="250">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +41,7 @@
                         <td>{{ rs.modelo }}</td>
                         <td>{{ rs.cor }}</td>
                         <td>
-                            <a href="edit/{{ rs.id }}" class="btn btn-success">Editar</a>   |   <a href="delete/{{ rs.id }}" class="btn btn-danger">Deletar</a>
+                            <a href="edit/{{ rs.id }}" id="btn-editar" class="btn btn-success">Editar ✏️</a>   |   <a href="delete/{{ rs.id }}" class="btn btn-danger">Deletar 🗑️</a>
                         </td>
                     </tr>
                 {% endfor %}
