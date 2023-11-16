@@ -28,6 +28,10 @@ def get_db():
 @app.get("/", tags=["Tela Inicial"])
 async def home(request: Request, db: Session = Depends(get_db)):
     veiculos = db.query(models.models.Veiculo).order_by(models.models.Veiculo.id.desc())
+
+    somaVeiculos = sum(id[0] for veiculos_id in id)
+
+
     return templates.TemplateResponse("index.html", {"request": request, "veiculos": veiculos})
 
 @app.get("/addnew", tags=["Tela de criar"])

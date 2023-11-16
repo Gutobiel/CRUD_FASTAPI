@@ -11,6 +11,53 @@
 
 </head>
 <style>
+ #side-bar {
+    width: auto;
+    height: 100%;
+    background-color: #0d6efd;
+    position: fixed;
+    top: 0;
+    left: -60px;
+    transition: left 0.3s;
+
+}
+
+#side-bar p{
+    padding: 10px;
+    font-size:large;
+}
+
+#side-bar.active {
+    left: 0;
+}
+
+#side-bar:hover {
+    left: 0;
+}
+
+#side-bar ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#side-bar ul li {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#side-bar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+#side-bar ul li a:hover {
+    background-color: #151d3b;
+}
+
     .rodape {
         bottom: 0;
         margin-left: 150px;
@@ -23,9 +70,34 @@
         text-decoration: none
     }
 
+    .ListNoCSS{
+        text-decoration: none;
+    }
+
 </style>
 <body>
     <div class="container">
+
+        <nav id="side-bar">
+            <p><strong>CRUD DE CARRO</strong></p>
+            <ul>
+                <li><a href="#">Minha garagem</a> </li>
+                <li><hr></li>
+                <li><a href="#">Favoritos</a></li>
+                <li><a href="#">Mecânica</a></li>
+                <li><a href="#">Rastrear</a></li> 
+                <li class="ListNoCSS"><select> 
+                    <option selected value="1">Contas</option>
+                    <option value="1">Habilitação</option>
+                    <option value="2">Pagar Multas</option>
+                    <option value="3">IPVA</option>
+                    <option value="3">Extrato</option>
+                  </select>
+                </li>
+
+            </ul>
+        </nav>
+
         <h1 class="page-header text-center">API RestFul utilizando o framework FastAPI <br> CRUD (Create, Read, Update, Delete)</h1>
         <h2 class="page-title text-center">Biblioteca de carros</h2>
         {% block content %}
