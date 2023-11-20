@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="shortcut" href="favicon.ico">
     <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+    
 
 
 </head>
@@ -19,6 +20,8 @@
     top: 0;
     left: -60px;
     transition: left 0.3s;
+    border-right: 20px;
+    
 
 }
 
@@ -70,7 +73,17 @@
         text-decoration: none
     }
 
-    .ListNoCSS{
+    #totalVeiculos {
+        font-weight: bold;
+        color: yellow;
+    }
+    select{
+        background-color: transparent;
+        border-color: transparent;
+        color: #2c2c2c;
+    }
+    option{
+        background-color: transparent;
         text-decoration: none;
     }
 
@@ -78,20 +91,20 @@
 <body>
     <div class="container">
 
-        <nav id="side-bar">
+        <nav class="border" id="side-bar">
             <p><strong>CRUD DE CARRO</strong></p>
             <ul>
-                <li><a href="#">Minha garagem</a> </li>
+                <li><a href="#">Minha garagem (<span id="totalVeiculos">{{ totalVeiculos }}</span>)</a> </li>
                 <li><hr></li>
                 <li><a href="#">Favoritos</a></li>
-                <li><a href="#">Mecânica</a></li>
                 <li><a href="#">Rastrear</a></li> 
-                <li class="ListNoCSS"><select> 
+                <li><select> 
                     <option selected value="1">Contas</option>
-                    <option value="1">Habilitação</option>
-                    <option value="2">Pagar Multas</option>
+                    <option value="1">Conserto</option>
+                    <option value="2">Multas</option>
                     <option value="3">IPVA</option>
-                    <option value="3">Extrato</option>
+                    <option value="4">Gasolina</option>
+                    <option value="5">Extrato</option>
                   </select>
                 </li>
 
@@ -106,7 +119,7 @@
     </div>
     <footer class="rodape">
         <h3 class="footer">Para maiores informacoes visite: /docs</h3>
-        <button id="botao-docs" class="btn btn-primary mb-4" target="_blank"><a href="http://localhost:7777/docs">Entrar</a></button>
+        <button id="botao-docs" class="btn btn-warning mb-4" target="_blank"><a href="http://localhost:7777/docs">Entrar</a></button>
         </footer>
 </body>
 </html>

@@ -3,10 +3,10 @@
 {% block content %}
  <div class="row">
     <div class="col-12">
-        <a href="addnew" class="btn btn-primary">Adicionar</a> <br><br>
+        <a href="addnew" class="btn btn-outline-primary">Adicionar veículo</a> <br><br>
         <div class="search-bar">
-            <input type="search" id="form1" placeholder="Pesquisar" >
-            <select class="custom-select">
+            <input type="search" id="form1" placeholder="Pesquisar" class="border-primary-subtle">
+            <select class="border-black">
                 <option selected>Filtrar</option>
                 <option value="1">Teste2</option>
                 <option value="2">Teste3</option>
@@ -16,7 +16,7 @@
             <br>
        </div>
         </div>
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered border-primary-subtle table-striped">
             <thead>
                 <tr>
                     <th width="50">Visualizar</th>
@@ -25,14 +25,14 @@
                     <th>Marca</th>
                     <th>Modelo</th>
                     <th>Cor</th>
-                    <th width="250">Ações</th>
+                    <th width="180">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% for rs in veiculos %}
                     <tr>
                         <td>
-                            <a href="ver" class="btn btn-primary ">Abrir</a>
+                            <a href="ver/{{ rs.id }}" class="btn btn-outline-primary ">+Info</a>
                         </td>
                         <td>{{ rs.id }}</td>
                         <td>{{ rs.placa }}</td>
@@ -40,7 +40,7 @@
                         <td>{{ rs.modelo }}</td>
                         <td>{{ rs.cor }}</td>
                         <td>
-                            <a href="edit/{{ rs.id }}" id="btn-editar" class="btn btn-success">Editar ✏️</a>   |   <a href="delete/{{ rs.id }}" class="btn btn-danger">Deletar 🗑️</a>
+                            <a href="edit/{{ rs.id }}" id="btn-editar" class="btn btn-outline-success">Editar</a>   |   <a href="delete/{{ rs.id }}" class="btn btn-outline-danger">Deletar</a>
                         </td>
                     </tr>
                 {% endfor %}

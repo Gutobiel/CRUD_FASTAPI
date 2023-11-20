@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request, Depends, Form, status
 from fastapi.templating import Jinja2Templates
+from sqlalchemy import func
 import uvicorn
 import models.models
 from database.database import engine, sessionlocal
@@ -28,16 +29,15 @@ def get_db():
 @app.get("/", tags=["Tela Inicial"])
 async def home(request: Request, db: Session = Depends(get_db)):
     veiculos = db.query(models.models.Veiculo).order_by(models.models.Veiculo.id.desc())
-
-    somaVeiculos = sum(id[0] for veiculos_id in id)
-
-
-    return templates.TemplateResponse("index.html", {"request": request, "veiculos": veiculos})
+    totalVeiculos = db.query(func.count(models.models.Veiculo.id)).scalar()
+    
+    return templates.TemplateResponse("index.html", {"request": request, "veiculos": veiculos, "totalVeiculos": totalVeiculos})
 
 @app.get("/addnew", tags=["Tela de criar"])
-async def addnew(request: Request):
+async def home(request: Request, db: Session = Depends(get_db)):
     veiculo = (...) # Obtenha o veículo apropriado aqui
-    return templates.TemplateResponse("addnew.html", {"request": request, "veiculo": veiculo})
+    totalVeiculos = db.query(func.count(models.models.Veiculo.id)).scalar()
+    return templates.TemplateResponse("addnew.html", {"request": request, "veiculo": veiculo, "totalVeiculos": totalVeiculos})
 
 @app.post("/add", tags=["Criar"])
 async def add(request: Request, marca: str = Form(...), modelo: str = Form(...), cor: str = Form(), db: Session = Depends(get_db)):
@@ -66,7 +66,8 @@ async def add(request: Request, marca: str = Form(...), modelo: str = Form(...),
 @app.get("/edit/{veiculo_id}", tags=["Tela de editar"])
 async def edit(request: Request, veiculo_id: int, db: Session = Depends(get_db)):
     veiculos = db.query(models.models.Veiculo).filter(models.models.Veiculo.id == veiculo_id).first()
-    return templates.TemplateResponse("edit.html", {"request": request, "veiculos": veiculos})
+    totalVeiculos = db.query(func.count(models.models.Veiculo.id)).scalar()
+    return templates.TemplateResponse("edit.html", {"request": request, "veiculos": veiculos, "totalVeiculos": totalVeiculos})
 
 @app.post("/update/{veiculo_id}", tags=["Atualizar"])
 async def update(request: Request, veiculo_id: int, marca: str = Form(...), modelo: str = Form(...), cor: str = Form(), db: Session = Depends(get_db)):
@@ -97,9 +98,11 @@ async def delete(request: Request, veiculo_id: int, db: Session = Depends(get_db
     db.commit()
     return RedirectResponse(url=app.url_path_for("home"), status_code=status.HTTP_303_SEE_OTHER)
 
-@app.get("/ver", tags=["Tela informações do carro"])
-async def ver(request: Request):
-    return templates.TemplateResponse("ver.html", {"request": request, "veiculos": veiculos})
+@app.get("/ver/{veiculo_id}", tags=["Tela informações do carro"])
+async def delete(request: Request, veiculo_id: int, db: Session = Depends(get_db)):
+    veiculo = db.query(models.models.Veiculo).filter(models.models.Veiculo.id == veiculo_id).first()
+    totalVeiculos = db.query(func.count(models.models.Veiculo.id)).scalar()
+    return templates.TemplateResponse("ver.html", {"request": request, "veiculos": veiculos, "totalVeiculos": totalVeiculos})
 
 if __name__ == '__main__':
     uvicorn.run(app, host='localhost', port=7777)
