@@ -103,9 +103,25 @@ async def delete(request: Request, veiculo_id: int, db: Session = Depends(get_db
 
 @app.get("/ver/{veiculo_id}", tags=["Tela informações do carro"])
 async def delete(request: Request, veiculo_id: int, db: Session = Depends(get_db)):
-    veiculo = db.query(models.models.Veiculo).filter(models.models.Veiculo.id == veiculo_id).first()
+    veiculos = db.query(models.models.Veiculo).filter(models.models.Veiculo.id == veiculo_id).first()
     totalVeiculos = db.query(func.count(models.models.Veiculo.id)).scalar()
     return templates.TemplateResponse("ver.html", {"request": request, "veiculos": veiculos, "totalVeiculos": totalVeiculos})
+
+@app.get("/favoritos")
+async def favoritos(request: Request, db: Session = Depends(get_db)):
+    veiculos = db.query(models.models.Veiculo).filter(models.models.Veiculo.favorito == True).order_by(models.models.Veiculo.id.desc())
+    totalVeiculos = db.query(func.count(models.models.Veiculo.id)).scalar()
+
+    return templates.TemplateResponse("favoritos.html", {"request": request, "veiculos": veiculos, "totalVeiculos": totalVeiculos})
+
+@app.get("/favoritos/{veiculos_id}")
+async def favoritar(request: Request, veiculo_id: int, db: Session = Depends(get_db)):
+    veiculos = db.query(models.models.Veiculo).filter(models.models.Veiculo.id == veiculo_id).first()
+        # Marque o herói como inativo
+    veiculos.favorito = True
+    db.commit()
+
+    return RedirectResponse(url=app.url_path_for("favoritos"), status_code=status.HTTP_303_SEE_OTHER)
 
 if __name__ == '__main__':
     uvicorn.run(app, host='localhost', port=7777)

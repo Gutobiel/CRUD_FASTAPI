@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Não sei se faço um carrossel de carros ou a lista padrão</p>
+ <div class="row">
+    <div class="col-12">
+        <div class="search-bar">
+            <input type="search" id="form1" placeholder="Pesquisar" class="border-primary-subtle">
+            <select class="border-black" style="color: black;">
+                <option selected>Filtrar</option>
+                <option value="1">Teste2</option>
+                <option value="2">Teste3</option>
+                <option value="3">Teste4</option>
+              </select>
+        <div>
+            <br>
+       </div>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Placa</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Cor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rs in veiculos %}
+                    <tr>
+                        <td>{{ rs.id }}</td>
+                        <td>{{ rs.placa }}</td>
+                        <td>{{ rs.marca }}</td>
+                        <td>{{ rs.modelo }}</td>
+                        <td>{{ rs.cor }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+ </div>
+
+ {% endblock content %}
