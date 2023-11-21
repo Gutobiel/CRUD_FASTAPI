@@ -3,15 +3,55 @@
 {% block content %}
 
 <div class="card">
-    <div class="card-image"></div>
-    <p class="card-title">Detalhes do carro</p>
-    <p class="card-body">
-      Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
+    <div class="card-image">
+        <img src="/static/css/imagemtestecarro.jpg" alt="" style="width: 300px;">
+    </div>
+
+    <p class="card-title">Detalhes do carro
+        <p>Carro imaginário - x</p>
     </p>
+    <p class="card-body">
+        Nullam ac tristique nulla, at convallis quam. Integer consectetur mi nec magna tristique, non lobortis.
+    </p>
+
+    <ul>
         <li>Placa</li>
-        <li>Marca</li>
-        <li>Modelo</li>
-        <li>Placa</li>
-  </div>
+        <li>Manutenção</li>
+        <li>KM rodados</li>
+        <li>IPVA</li>
+    </ul>
+
+    <!-- Botão de favoritar com animação -->
+    <a id="favoritar-btn" onclick="toggleFavoritar()">
+        &#x2605; <!-- Emoji de estrela -->
+    </a>
+
+</div>
+
+<script>
+    function toggleFavoritar() {
+        var btn = document.getElementById("favoritar-btn");
+        btn.classList.toggle("favoritado");
+
+        // Adicione lógica adicional para tratar o estado favoritado/não favoritado aqui
+        // Por exemplo, pode enviar uma solicitação à API para atualizar o estado no backend
+    }
+</script>
+
+<style>
+    /* Adicione estilos para o botão de favoritar e sua animação aqui */
+    #favoritar-btn {
+      color: black;
+        font-size: 30px;
+        cursor: pointer;
+        transition: color 0.3s; /* Adicionada a transição para border-radius */
+        border-radius: 50%; /* Torna o botão redondo */
+        text-decoration: none;
+    }
+
+    #favoritar-btn.favoritado {
+        color: gold; /* Cor da estrela quando favoritado */
+    }
+</style>
 
 {% endblock content %}

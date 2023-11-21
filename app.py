@@ -25,8 +25,11 @@ def get_db():
     finally:
         db.close()
 
-
 @app.get("/", tags=["Tela Inicial"])
+async def inicio(request: Request):
+    return templates.TemplateResponse("inicio.html", {"request": request})
+    
+@app.get("/home", tags=["Tela Home"])
 async def home(request: Request, db: Session = Depends(get_db)):
     veiculos = db.query(models.models.Veiculo).order_by(models.models.Veiculo.id.desc())
     totalVeiculos = db.query(func.count(models.models.Veiculo.id)).scalar()

@@ -12,22 +12,29 @@
 
 </head>
 <style>
- #side-bar {
+/* styles da base.html */
+#side-bar {
     width: auto;
     height: 100%;
-    background-color: #0d6efd;
+    background-color: rgb(240, 240, 240);
     position: fixed;
     top: 0;
     left: -60px;
     transition: left 0.3s;
     border-right: 20px;
-    
-
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: rgba(240, 240, 240, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
 }
 
-#side-bar p{
+#side-bar p {
     padding: 10px;
-    font-size:large;
+    font-size: large;
+    color: #333; /* Alterado para um tom de cinza escuro */
 }
 
 #side-bar.active {
@@ -47,59 +54,51 @@
 #side-bar ul li {
     text-align: center;
     margin-bottom: 15px;
+    color: #333; /* Alterado para um tom de cinza escuro */
 }
 
 #side-bar ul li a {
-    color: #ffffff;
+    color: #333; /* Alterado para um tom de cinza escuro */
     text-decoration: none;
     display: block;
     padding: 10px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s; /* Adicionado a transição para a cor do texto */
 }
 
 #side-bar ul li a:hover {
-    background-color: #151d3b;
+    background-color: #007BFF; /* Alterado para azul no hover */
+    color: #fff; /* Alterado para branco para melhor contraste */
 }
 
-    .rodape {
-        bottom: 0;
-        margin-left: 150px;
-        position: fixed;
-        width: 100%;
-    }
+/* Ajuste do botão select */
+#side-bar select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    background-color: #007BFF; /* Cor de fundo padrão do botão select */
+    color: #fff; /* Cor do texto do botão select */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Adicionado a transição */
+}
 
-    a{
-        color: aliceblue;
-        text-decoration: none
-    }
-
-    #totalVeiculos {
-        font-weight: bold;
-        color: yellow;
-    }
-    select{
-        background-color: transparent;
-        border-color: transparent;
-        color: #2c2c2c;
-    }
-    option{
-        background-color: transparent;
-        text-decoration: none;
-    }
-
-</style>
+#side-bar select:hover,
+#side-bar select:focus {
+    background-color: #0056b3; /* Cor de fundo do botão select no hover e no foco */
+}
+    </style>
 <body>
     <div class="container">
 
         <nav class="border" id="side-bar">
-            <p><strong>CRUD DE CARRO</strong></p>
+            <p class="text-center"><strong>CAR API+</strong></p>
             <ul>
-                <li><a href="#">Minha garagem (<span id="totalVeiculos">{{ totalVeiculos }}</span>)</a> </li>
+                <li><a href="/home">Minha garagem (<span id="totalVeiculos">{{ totalVeiculos }}</span>)</a> </li>
                 <li><hr></li>
                 <li><a href="#">Favoritos</a></li>
                 <li><a href="#">Rastrear</a></li> 
                 <li><select> 
-                    <option selected value="1">Contas</option>
+                    <option value="1">Contábil</option>
                     <option value="1">Conserto</option>
                     <option value="2">Multas</option>
                     <option value="3">IPVA</option>
@@ -117,9 +116,9 @@
         
         {% endblock content %}
     </div>
-    <footer class="rodape">
+    <footer class="rodape" style="margin-left: 200px;">
         <h3 class="footer">Para maiores informacoes visite: /docs</h3>
-        <button id="botao-docs" class="btn btn-warning mb-4" target="_blank"><a href="http://localhost:7777/docs">Entrar</a></button>
+        <button id="botao-docs" class="btn btn-primary" target="_blank"><a href="http://localhost:7777/docs" style="text-decoration: none; color: #ffffff;">Entrar</a></button>
         </footer>
 </body>
 </html>

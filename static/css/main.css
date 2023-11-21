@@ -1,3 +1,5 @@
+
+/* STYLES CARD VER DETALHES D CARRO */
 .card {
     display: flex;
     flex-direction: column;
@@ -30,5 +32,15 @@
     color: rgb(31, 31, 31);
     font-size: 15px;
   }
+
+  .card li{
+
+    align-self: start;
+  }
+
+
+  
+
+
 
 
